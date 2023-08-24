@@ -3,6 +3,7 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore.Infrastructure.Internal;
 using TaskBoardWebApp.Infrastructure;
 using TaskBoardWebApp.Models;
+using TaskBoardWebApp.Infrastructure.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,9 @@ builder.Services.AddDbContext<DataContext>(options =>
 });
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+
+
 
 var app = builder.Build();
 
@@ -37,18 +41,9 @@ var context = app.Services.CreateScope().ServiceProvider.GetRequiredService<Data
 //bool flag = false;
 //if (!flag)
 //{
-//    var user = context.Users.FirstOrDefault(x => x.Name == "Rorshah");
+//    context.Database.Migrate();
 
-//    var characters = context.Characters.AsQueryable()
-//    .Where(x => x.User.Id == user.Id)
-//    .Select(x => x);
-
-//    Console.WriteLine("User: " + user.Email);
-//    foreach (var character in characters)
-//    {
-//        Console.WriteLine("Charater: " + character.CreateDate);
-//    }
-
+    
 
 //    flag = true;
 //}

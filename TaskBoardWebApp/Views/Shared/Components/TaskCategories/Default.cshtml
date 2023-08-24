@@ -1,0 +1,11 @@
+﻿@model TaskCategory
+
+<ul class="list-group">
+    <li class="list-group-item">
+        <a class="nav-link text-dark" asp-controller="Categories" asp-action="Index">All Categories</a>
+    </li>
+
+    <li class="list-group-item" foreach="var item in Model">
+        <a class="nav-link text-dark" asp-controller="Categories" asp-action="Details" asp-route-categoryId="@Model.Id">@Model.Category</a>
+    </li>
+</ul>

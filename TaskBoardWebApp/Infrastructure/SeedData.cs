@@ -84,6 +84,92 @@ namespace TaskBoardWebApp.Infrastructure
                 context.Characters.Add(character2);
                 context.SaveChanges();
             }
+            if (!context.Categories.Any())
+            {
+                // Add the users to the database
+                context.Categories.AddRange(
+                    new TaskCategory
+                    {
+                        Category = "Python"
+                    },
+
+                    new TaskCategory
+                    {
+                        Category = "HomeWork"
+                    },
+
+                    new TaskCategory
+                    {
+                        Category = "C#"
+                    },
+
+                    new TaskCategory
+                    {
+                        Category = "Java"
+                    },
+
+                    new TaskCategory
+                    {
+                        Category = "Language"
+                    },
+
+                    new TaskCategory
+                    {
+                        Category = "C++"
+                    }
+
+                );
+
+                context.SaveChanges();
+            }
+
+            if (!context.Tasks.Any())
+            {
+                context.Tasks.AddRange(
+                    new Models.Task
+                    {
+                        Name = "MVC",
+                        Description = "Learn the pattern Mvc",
+                        CreateDate = DateTime.Now,
+                        EndDate = DateTime.Now + TimeSpan.FromDays(1),
+                        IsExecute = false,
+                        Experience = 10,
+                        Rating = 0,
+                        Character = context.Characters.FirstOrDefault(x => x.Id == 1),
+                        Category = context.Categories.FirstOrDefault(x => x.Category == "C#")
+                    },
+                    
+                    new Models.Task
+                    {
+                        Name = "Parser",
+                        Description = "Create a parser in python",
+                        CreateDate = DateTime.Now,
+                        EndDate = DateTime.Now + TimeSpan.FromDays(2),
+                        IsExecute = false,
+                        Experience = 5,
+                        Rating = 0,
+                        Character = context.Characters.FirstOrDefault(x => x.Id == 1),
+                        Category = context.Categories.FirstOrDefault(x => x.Category == "Python")
+                    },
+                    
+                    new Models.Task
+                    {
+                        Name = "Floristry",
+                        Description = "Water the flowers",
+                        CreateDate = DateTime.Now,
+                        EndDate = DateTime.Now + TimeSpan.FromHours(2),
+                        IsExecute = false,
+                        Experience = 2,
+                        Rating = 0,
+                        Character = context.Characters.FirstOrDefault(x => x.Id == 2),
+                        Category = context.Categories.FirstOrDefault(x => x.Category == "HomeWork")
+                    }
+
+                    );
+
+                context.SaveChanges();
+
+            } 
         }
 
         private static SeedData _instance;
